@@ -1,0 +1,5 @@
+hazard5/
+checks/
+*.s
+*.o
+*.log
