@@ -1,18 +1,19 @@
 [*]
-[*] GTKWave Analyzer v3.3.93 (w)1999-2018 BSI
-[*] Thu Apr 25 04:55:14 2019
+[*] GTKWave Analyzer v3.3.98 (w)1999-2019 BSI
+[*] Fri Feb 28 21:34:43 2020
 [*]
-[dumpfile] "/home/luke/proj/riscboy/test/riscv-formal/cores/hazard5/checks/insn_add_ch0/engine_0/trace.vcd"
-[dumpfile_mtime] "Wed Apr 24 16:58:19 2019"
-[dumpfile_size] 227880
+[dumpfile] "/home/luke/proj/riscboy/test/riscv-formal/cores/hazard5/checks/insn_div_ch0/engine_0/trace.vcd"
+[dumpfile_mtime] "Fri Feb 28 00:52:09 2020"
+[dumpfile_size] 621464
 [savefile] "/home/luke/proj/riscboy/test/riscv-formal/cores/hazard5/checks.gtkw"
-[timestart] 24
-[size] 1732 1440
-[pos] 490 -1
-*-5.049806 62 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[timestart] 0
+[size] 1773 1403
+[pos] 1227 0
+*-6.049806 450 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] rvfi_testbench.
 [treeopen] rvfi_testbench.wrapper.
 [treeopen] rvfi_testbench.wrapper.dut.
+[treeopen] rvfi_testbench.wrapper.dut.has_muldiv.
 [treeopen] rvfi_testbench.wrapper.dut.inst_hazard5_decode.
 [sst_width] 233
 [signals_width] 314
@@ -38,7 +39,7 @@ rvfi_testbench.checker_inst.spec_rs2_addr[4:0]
 @28
 rvfi_testbench.wrapper.dut.rvfi_halt
 rvfi_testbench.wrapper.dut.rvfi_trap
-@22
+@25
 rvfi_testbench.wrapper.dut.rvfi_order[63:0]
 @28
 rvfi_testbench.wrapper.dut.rvfi_valid
@@ -106,13 +107,11 @@ rvfi_testbench.wrapper.dut.d_pc[31:0]
 -Execute
 @28
 rvfi_testbench.wrapper.dut.x_stall
-@29
 rvfi_testbench.wrapper.dut.x_stall_raw
 @22
 rvfi_testbench.wrapper.dut.dx_aluop[3:0]
 @28
 rvfi_testbench.wrapper.dut.dx_branchcond[1:0]
-rvfi_testbench.wrapper.dut.dx_except_invalid_instr
 @22
 rvfi_testbench.wrapper.dut.dx_imm[31:0]
 @28
@@ -141,11 +140,22 @@ rvfi_testbench.wrapper.dut.x_memop_vld
 rvfi_testbench.wrapper.dut.x_rs1_bypass[31:0]
 rvfi_testbench.wrapper.dut.x_rs2_bypass[31:0]
 @200
+-Muldiv
+@22
+rvfi_testbench.wrapper.dut.has_muldiv.muldiv.op_a[31:0]
+rvfi_testbench.wrapper.dut.has_muldiv.muldiv.op_b[31:0]
+@28
+rvfi_testbench.wrapper.dut.has_muldiv.muldiv.op_vld
+rvfi_testbench.wrapper.dut.has_muldiv.muldiv.op_rdy
+rvfi_testbench.wrapper.dut.has_muldiv.x_muldiv_result_is_high
+rvfi_testbench.wrapper.dut.has_muldiv.muldiv.result_vld
+@22
+rvfi_testbench.wrapper.dut.has_muldiv.muldiv.result_h[31:0]
+rvfi_testbench.wrapper.dut.has_muldiv.muldiv.result_l[31:0]
+@200
 -Memory
 @28
 rvfi_testbench.wrapper.dut.m_stall
-rvfi_testbench.wrapper.dut.xm_except_invalid_instr
-rvfi_testbench.wrapper.dut.xm_except_unaligned
 rvfi_testbench.wrapper.dut.xm_jump
 @22
 rvfi_testbench.wrapper.dut.xm_jump_target[31:0]
