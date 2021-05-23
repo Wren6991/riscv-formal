@@ -1,0 +1,111 @@
+[*]
+[*] GTKWave Analyzer v3.3.103 (w)1999-2019 BSI
+[*] Sun May 23 06:00:17 2021
+[*]
+[dumpfile] "/home/luke/proj/hazard3/test/riscv-formal/riscv-formal/cores/hazard3/checks/insn_lw_ch0/engine_0/trace.vcd"
+[dumpfile_mtime] "Sun May 23 05:52:49 2021"
+[dumpfile_size] 183752
+[savefile] "/home/luke/proj/hazard3/test/riscv-formal/riscv-formal/cores/hazard3/insn_lw.gtkw"
+[timestart] 0
+[size] 2560 1403
+[pos] 1919 -144
+*-4.611744 28 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] rvfi_testbench.
+[treeopen] rvfi_testbench.checker_inst.
+[treeopen] rvfi_testbench.wrapper.
+[treeopen] rvfi_testbench.wrapper.dut.
+[treeopen] rvfi_testbench.wrapper.dut.core.
+[sst_width] 328
+[signals_width] 301
+[sst_expanded] 1
+[sst_vpaned_height] 601
+@22
+rvfi_testbench.wrapper.dut.core.f_jump_target[31:0]
+@28
+rvfi_testbench.wrapper.dut.core.f_jump_now
+rvfi_testbench.wrapper.dut.core.d_stall
+rvfi_testbench.wrapper.dut.core.x_stall
+rvfi_testbench.wrapper.dut.core.m_stall
+@200
+-
+-PC/CIR
+@22
+rvfi_testbench.wrapper.dut.core.frontend.cir[31:0]
+@28
+rvfi_testbench.wrapper.dut.core.inst_hazard3_decode.d_starved
+rvfi_testbench.wrapper.dut.core.frontend.cir_use[1:0]
+rvfi_testbench.wrapper.dut.core.frontend.cir_vld[1:0]
+@22
+rvfi_testbench.wrapper.dut.core.inst_hazard3_decode.pc[31:0]
+@200
+-
+-Reg Read
+@22
+rvfi_testbench.wrapper.dut.core.f_rs1[4:0]
+rvfi_testbench.wrapper.dut.core.d_rs1[4:0]
+rvfi_testbench.wrapper.dut.core.f_rs2[4:0]
+rvfi_testbench.wrapper.dut.core.d_rs2[4:0]
+rvfi_testbench.wrapper.dut.core.inst_regfile_1w2r.rdata1[31:0]
+rvfi_testbench.wrapper.dut.core.inst_regfile_1w2r.rdata2[31:0]
+rvfi_testbench.wrapper.dut.core.d_rd[4:0]
+@200
+-
+-ALU
+@22
+rvfi_testbench.wrapper.dut.core.alu.op_a[31:0]
+rvfi_testbench.wrapper.dut.core.alu.op_b[31:0]
+rvfi_testbench.wrapper.dut.core.x_alu_result[31:0]
+@200
+-
+-Reg Write
+@22
+rvfi_testbench.wrapper.dut.core.inst_regfile_1w2r.waddr[4:0]
+@28
+rvfi_testbench.wrapper.dut.core.inst_regfile_1w2r.wen
+@22
+rvfi_testbench.wrapper.dut.core.inst_regfile_1w2r.wdata[31:0]
+@200
+-
+-CSRs
+@22
+rvfi_testbench.wrapper.dut.core.inst_hazard3_csr.addr[11:0]
+@28
+rvfi_testbench.wrapper.dut.core.d_csr_wen
+rvfi_testbench.wrapper.dut.core.d_csr_wtype[1:0]
+@22
+rvfi_testbench.wrapper.dut.core.x_csr_wdata[31:0]
+@28
+rvfi_testbench.wrapper.dut.core.d_csr_ren
+@22
+rvfi_testbench.wrapper.dut.core.x_csr_rdata[31:0]
+@200
+-
+-D Bus
+@22
+rvfi_testbench.wrapper.dut.d_haddr[31:0]
+@28
+rvfi_testbench.wrapper.dut.d_htrans[1:0]
+rvfi_testbench.wrapper.dut.d_hwrite
+rvfi_testbench.wrapper.dut.d_hsize[2:0]
+rvfi_testbench.wrapper.dut.d_hready
+@22
+rvfi_testbench.wrapper.dut.d_hwdata[31:0]
+@23
+rvfi_testbench.wrapper.dut.d_hrdata[31:0]
+@200
+-
+@28
+rvfi_testbench.wrapper.dut.core.rvfi_valid
+@22
+rvfi_testbench.checker_inst.rvfi_rd_addr[4:0]
+rvfi_testbench.checker_inst.spec_rd_addr[4:0]
+rvfi_testbench.wrapper.dut.core.rvfi_rd_wdata[31:0]
+rvfi_testbench.checker_inst.spec_rd_wdata[31:0]
+rvfi_testbench.checker_inst.spec_pc_wdata[31:0]
+rvfi_testbench.checker_inst.rvfi_pc_wdata[31:0]
+rvfi_testbench.wrapper.dut.core.rvfi_pc_rdata[31:0]
+@28
+rvfi_testbench.wrapper.dut.core.x_trap_enter
+rvfi_testbench.wrapper.dut.core.x_trap_exit
+[pattern_trace] 1
+[pattern_trace] 0
