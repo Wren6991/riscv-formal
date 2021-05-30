@@ -8,7 +8,7 @@ rvfi_valid = None
 rvfi_order = None
 rvfi_insn = None
 
-for netinfo in parse_vcd(argv[1]).values():
+for netinfo in parse_vcd(f"checks/{argv[1]}_ch0/engine_0/trace.vcd").values():
     for net in netinfo['nets']:
         # print(net["hier"], net["name"])
         if net["hier"] == "rvfi_testbench.wrapper" and net["name"] == "rvfi_valid":

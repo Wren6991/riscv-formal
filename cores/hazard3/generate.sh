@@ -3,5 +3,6 @@ set -ex
 # FIXME this is awful but not willing to experiment with loops of submodules right now
 rm -rf hdl
 cp -R ../../../../../hdl .
+cp ../../../../formal/common/*.v hdl
 mv hdl/arith/* hdl
 python3 ../../checks/genchecks.py
