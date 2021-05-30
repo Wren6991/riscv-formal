@@ -1,8 +1,12 @@
 #!/bin/bash
 set -ex
-# FIXME this is awful but not willing to experiment with loops of submodules right now
+TB_ROOT=$PROJ_ROOT/test/formal/riscv-formal/tb
+
 rm -rf hdl
-cp -R ../../../../../hdl .
-cp ../../../../formal/common/*.v hdl
-mv hdl/arith/* hdl
+mkdir hdl
+cp $(listfiles $TB_ROOT/hazard3_rvfi.f) hdl
+for incdir in $(listfiles -f flati $TB_ROOT/hazard3_rvfi.f); do
+	cp $incdir/*.vh hdl
+done
+
 python3 ../../checks/genchecks.py
