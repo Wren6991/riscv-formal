@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.103 (w)1999-2019 BSI
-[*] Sun May 23 06:00:17 2021
+[*] Sat May 29 18:22:49 2021
 [*]
-[dumpfile] "/home/luke/proj/hazard3/test/riscv-formal/riscv-formal/cores/hazard3/checks/insn_lw_ch0/engine_0/trace.vcd"
-[dumpfile_mtime] "Sun May 23 05:52:49 2021"
-[dumpfile_size] 183752
-[savefile] "/home/luke/proj/hazard3/test/riscv-formal/riscv-formal/cores/hazard3/insn_lw.gtkw"
+[dumpfile] "/home/luke/proj/hazard3/test/formal/riscv-formal/cores/hazard3/checks/insn_add_ch0/engine_0/trace.vcd"
+[dumpfile_mtime] "Sat May 29 17:59:12 2021"
+[dumpfile_size] 191431
+[savefile] "/home/luke/proj/hazard3/test/formal/riscv-formal/cores/hazard3/checks.gtkw"
 [timestart] 0
 [size] 2560 1403
-[pos] 1919 -144
-*-4.611744 28 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] -1 -1
+*-4.611744 120 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] rvfi_testbench.
 [treeopen] rvfi_testbench.checker_inst.
 [treeopen] rvfi_testbench.wrapper.
@@ -18,7 +18,7 @@
 [sst_width] 328
 [signals_width] 301
 [sst_expanded] 1
-[sst_vpaned_height] 601
+[sst_vpaned_height] 988
 @22
 rvfi_testbench.wrapper.dut.core.f_jump_target[31:0]
 @28
@@ -26,6 +26,7 @@ rvfi_testbench.wrapper.dut.core.f_jump_now
 rvfi_testbench.wrapper.dut.core.d_stall
 rvfi_testbench.wrapper.dut.core.x_stall
 rvfi_testbench.wrapper.dut.core.m_stall
+rvfi_testbench.wrapper.dut.core.m_bus_stall
 @200
 -
 -PC/CIR
@@ -39,6 +40,10 @@ rvfi_testbench.wrapper.dut.core.frontend.cir_vld[1:0]
 rvfi_testbench.wrapper.dut.core.inst_hazard3_decode.pc[31:0]
 @200
 -
+@23
+rvfi_testbench.wrapper.dut.core.inst_regfile_1w2r.raddr1[4:0]
+rvfi_testbench.wrapper.dut.core.inst_regfile_1w2r.raddr2[4:0]
+@200
 -Reg Read
 @22
 rvfi_testbench.wrapper.dut.core.f_rs1[4:0]
@@ -90,7 +95,6 @@ rvfi_testbench.wrapper.dut.d_hsize[2:0]
 rvfi_testbench.wrapper.dut.d_hready
 @22
 rvfi_testbench.wrapper.dut.d_hwdata[31:0]
-@23
 rvfi_testbench.wrapper.dut.d_hrdata[31:0]
 @200
 -
@@ -104,8 +108,17 @@ rvfi_testbench.checker_inst.spec_rd_wdata[31:0]
 rvfi_testbench.checker_inst.spec_pc_wdata[31:0]
 rvfi_testbench.checker_inst.rvfi_pc_wdata[31:0]
 rvfi_testbench.wrapper.dut.core.rvfi_pc_rdata[31:0]
+@200
+-
+-Traps
+@22
+rvfi_testbench.wrapper.dut.core.m_trap_addr[31:0]
 @28
-rvfi_testbench.wrapper.dut.core.x_trap_enter
-rvfi_testbench.wrapper.dut.core.x_trap_exit
+rvfi_testbench.wrapper.dut.core.m_trap_enter_rdy
+rvfi_testbench.wrapper.dut.core.m_trap_enter_vld
+@22
+rvfi_testbench.wrapper.dut.core.irq[15:0]
+@28
+rvfi_testbench.wrapper.dut.core.inst_hazard3_csr.exception_req_any
 [pattern_trace] 1
 [pattern_trace] 0
