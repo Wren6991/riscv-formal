@@ -1,0 +1,26 @@
+[options]
+mode bmc
+append 0
+tbtop testbench.uut
+depth 25
+
+[engines]
+smtbmc --presat --unroll boolector
+
+[script]
+connect_rpc -exec nmigen-rpc yosys minerva.core.Minerva
+read_verilog -sv -formal imemcheck.sv
+prep -nordff -top testbench
+
+[files]
+imemcheck.sv
+../../checks/rvfi_macros.vh
+../../checks/rvfi_imem_check.sv
+
+[file defines.sv]
+`define RISCV_FORMAL
+`define RISCV_FORMAL_NRET 1
+`define RISCV_FORMAL_XLEN 32
+`define RISCV_FORMAL_ILEN 32
+`include "rvfi_macros.vh"
+`include "rvfi_imem_check.sv"
