@@ -34,6 +34,6 @@ with open("disasm.s", "w") as f:
         else:
             print(".insn 4, 0x%08x # %d" % (tv_insn, tv_order), file=f)
 
-system("riscv32-unknown-elf-gcc -c disasm.s")
+system("riscv32-unknown-elf-gcc -march=rv32imab_zicsr_zifencei_zca_zcb_zcmp -c disasm.s")
 system("riscv32-unknown-elf-objdump -D -j .text -M numeric,no-aliases disasm.o")
 
