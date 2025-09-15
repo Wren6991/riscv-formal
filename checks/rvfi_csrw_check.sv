@@ -1,4 +1,4 @@
-// Copyright (C) 2017  Clifford Wolf <clifford@symbioticeda.com>
+// Copyright (C) 2017  Claire Xenia Wolf <claire@yosyshq.com>
 //
 // Permission to use, copy, modify, and/or distribute this software for any
 // purpose with or without fee is hereby granted, provided that the above
@@ -19,26 +19,18 @@ module rvfi_csrw_check (
 	`RVFI_CHANNEL(rvfi, `RISCV_FORMAL_CHANNEL_IDX)
 
 	localparam [11:0] csr_none = 12'hFFF;
-	`define DECLARE_CSR(_name, _maddr, _saddr, _uaddr) \
-		localparam [11:0] csr_mindex_``_name = _maddr; \
-		localparam [11:0] csr_sindex_``_name = _saddr; \
-		localparam [11:0] csr_uindex_``_name = _uaddr;
+	`RVFI_INDICES
 
-	`DECLARE_CSR(misa,      12'h 301, csr_none, csr_none)
-	`DECLARE_CSR(mcycle,    12'h B00, csr_none, 12'h C00)
-	`DECLARE_CSR(minstret,  12'h B02, csr_none, 12'h C02)
-	`DECLARE_CSR(mcycleh,   12'h B80, csr_none, 12'h C80)
-	`DECLARE_CSR(minstreth, 12'h B82, csr_none, 12'h C82)
-
-	`define csrget(_name, _type) rvfi.csr_``_name``_``_type
+	`define quoted(txt) txt
+	`define csrget(_name, _type) rvfi.csr_``_name```quoted(_``_type)
 	`define csr_mindex(_name) csr_mindex_``_name
 	`define csr_sindex(_name) csr_sindex_``_name
 	`define csr_uindex(_name) csr_uindex_``_name
-	`define csr_mindexh(_name) csr_mindex_``_name``h
-	`define csr_sindexh(_name) csr_sindex_``_name``h
-	`define csr_uindexh(_name) csr_uindex_``_name``h
+	`define csr_mindexh(_name) csr_mindex_``_name```quoted(h)
+	`define csr_sindexh(_name) csr_sindex_``_name```quoted(h)
+	`define csr_uindexh(_name) csr_uindex_``_name```quoted(h)
 
-	wire csr_insn_valid = rvfi.valid && (rvfi.insn[6:0] == 7'b 1110011) && (rvfi.insn[13:12] != 0) && ((rvfi.insn >> 32) == 0);
+	wire csr_insn_valid = rvfi.valid && (rvfi.insn[6:0] == 7'b 1110011) && (rvfi.insn[13:12] != 0) && ((rvfi.insn >> 16 >> 16) == 0);
 	wire [11:0] csr_insn_addr = rvfi.insn[31:20];
 
 	wire [`RISCV_FORMAL_XLEN-1:0] csr_insn_arg = rvfi.insn[14] ? rvfi.insn[19:15] : rvfi.rs1_rdata;

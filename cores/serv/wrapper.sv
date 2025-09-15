@@ -18,7 +18,7 @@ module rvfi_wrapper (
 	(* keep *) rand reg  [31:0] dbus_rdt;
 	(* keep *) rand reg         dbus_ack;
 
-	serv_top uut (
+	serv_rf_top #(.DEBUG (1'b1)) uut (
 		.clk(clock),
 		.i_rst(reset),
 		.i_timer_irq(1'b0),
@@ -59,8 +59,8 @@ module rvfi_wrapper (
 	end
 
 `ifdef MEMIO_FAIRNESS
-	reg [2:0] timeout_ibus = 0;
-	reg [2:0] timeout_dbus = 0;
+	reg [3:0] timeout_ibus = 0;
+	reg [3:0] timeout_dbus = 0;
 
 	always @(posedge clock) begin
 		timeout_ibus <= 0;
@@ -72,8 +72,8 @@ module rvfi_wrapper (
 		if (dbus_cyc && !dbus_ack)
 			timeout_dbus <= timeout_dbus + 1;
 
-		assume (!timeout_ibus[2]);
-		assume (!timeout_dbus[2]);
+		assume (!timeout_ibus[3]);
+		assume (!timeout_dbus[3]);
 	end
 `endif
 endmodule

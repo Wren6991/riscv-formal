@@ -1,4 +1,4 @@
-// Copyright (C) 2017  Clifford Wolf <clifford@symbioticeda.com>
+// Copyright (C) 2017  Claire Xenia Wolf <claire@yosyshq.com>
 //
 // Permission to use, copy, modify, and/or distribute this software for any
 // purpose with or without fee is hereby granted, provided that the above
@@ -24,16 +24,17 @@ module rvfi_testbench (
 	input clock, reset
 );
 	`RVFI_WIRES
+	`RVFI_BUS_WIRES
 
 `ifdef YOSYS
-	assume property (reset == $initstate);
+	always_comb assume (reset == $initstate);
 `endif
 
 	reg [7:0] cycle_reg = 0;
-	wire [7:0] cycle = reset ? 0 : cycle_reg;
+	wire [7:0] cycle = reset ? 8'd 0 : cycle_reg;
 
 	always @(posedge clock) begin
-		cycle_reg <= reset ? 1 : cycle_reg + (cycle_reg != 255);
+		cycle_reg <= reset ? 8'd 1 : cycle_reg + (cycle_reg != 8'h ff);
 	end
 
 	`RISCV_FORMAL_CHECKER checker_inst (
@@ -54,12 +55,14 @@ module rvfi_testbench (
 `endif
 `endif
 		`RVFI_CONN
+		`RVFI_BUS_CONN
 	);
 
 	rvfi_wrapper wrapper (
 		.clock (clock),
 		.reset (reset),
 		`RVFI_CONN
+		`RVFI_BUS_CONN
 	);
 
 `ifdef RISCV_FORMAL_ASSUME
