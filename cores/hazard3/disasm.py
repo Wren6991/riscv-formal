@@ -33,6 +33,13 @@ with open("disasm.s", "w") as f:
             print(".insn 2, 0x%04x # %d" % (tv_insn, tv_order), file=f)
         else:
             print(".insn 4, 0x%08x # %d" % (tv_insn, tv_order), file=f)
+    # Allow additional (e.g. non-retired) instructions to be appended:
+    for word in argv[2:]:
+        if len(word) == 4:
+            print(".insn 2, 0x" + word, file=f)
+        else:
+            print(".insn 4, 0x" + word, file=f)
+
 
 system("riscv32-unknown-elf-gcc -march=rv32imab_zicsr_zifencei_zca_zcb_zcmp -c disasm.s")
 system("riscv32-unknown-elf-objdump -D -j .text -M numeric,no-aliases disasm.o")
