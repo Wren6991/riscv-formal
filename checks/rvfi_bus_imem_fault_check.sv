@@ -20,6 +20,7 @@ module rvfi_bus_imem_fault_check (
 	`RVFI_BUS_INPUTS
 );
 	`rvformal_rand_const_reg [`RISCV_FORMAL_XLEN-1:0] imem_addr;
+	`rvformal_rand_const_reg                          imem_prev_32bit;
 
 	reg [`RISCV_FORMAL_XLEN-1:0] pc;
 	reg [`RISCV_FORMAL_ILEN-1:0] insn;
@@ -38,10 +39,17 @@ module rvfi_bus_imem_fault_check (
 					bus_addr = rvfi_bus_addr[channel_idx*`RISCV_FORMAL_XLEN +: `RISCV_FORMAL_XLEN];
 					bus_rmask = rvfi_bus_rmask[channel_idx*`RISCV_FORMAL_BUSLEN/8 +: `RISCV_FORMAL_BUSLEN/8];
 					bus_rdata = rvfi_bus_rdata[channel_idx*`RISCV_FORMAL_BUSLEN +: `RISCV_FORMAL_BUSLEN];
-					for (i = 0; i < `RISCV_FORMAL_BUSLEN/8; i=i+1)
-					for (j = 0; j < 2; j=j+1) begin
-						if (bus_rmask[i] && bus_addr + i == imem_addr + j) begin
-							assume (rvfi_bus_fault[channel_idx]);
+					for (i = 0; i < `RISCV_FORMAL_BUSLEN/8; i=i+1) begin
+						for (j = 0; j < 2; j=j+1) begin
+							if (bus_rmask[i] && bus_addr + i == imem_addr + j) begin
+								assume (rvfi_bus_fault[channel_idx]);
+							end
+						end
+						// Checks on fault of second half of instruction are enabled only when the
+						// immediately previous halfword is constrained to be the start of a 32-bit
+						// encoding. See https://github.com/YosysHQ/riscv-formal/issues/44
+						if (bus_rmask[i] && bus_addr + i + 2 == imem_addr && imem_prev_32bit) begin
+							assume(bus_rdata[i * 8 +: 2] == 2'b11);
 						end
 					end
 					cover (rvfi_bus_fault[channel_idx]);
@@ -62,7 +70,7 @@ module rvfi_bus_imem_fault_check (
 `endif
 					end;
 
-					if (`rvformal_addr_valid(pc+2) && pc+2 == imem_addr) begin
+					if (`rvformal_addr_valid(pc+2) && pc+2 == imem_addr && imem_prev_32bit) begin
 						cover (1);
 						assert (rvfi_trap[`RISCV_FORMAL_CHANNEL_IDX]);
 						assert (insn == 0);
