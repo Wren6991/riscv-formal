@@ -45,6 +45,7 @@ module rvfi_bus_imem_check (
 					bus_addr = rvfi_bus_addr[channel_idx*`RISCV_FORMAL_XLEN +: `RISCV_FORMAL_XLEN];
 					bus_rmask = rvfi_bus_rmask[channel_idx*`RISCV_FORMAL_BUSLEN/8 +: `RISCV_FORMAL_BUSLEN/8];
 					bus_rdata = rvfi_bus_rdata[channel_idx*`RISCV_FORMAL_BUSLEN +: `RISCV_FORMAL_BUSLEN];
+					// Assume the halfword of interest is successfully fetched
 					for (i = 0; i < `RISCV_FORMAL_BUSLEN/8; i=i+1)
 					for (j = 0; j < 2; j=j+1) begin
 						if (bus_rmask[i] && bus_addr + i == imem_addr + j) begin
@@ -53,6 +54,17 @@ module rvfi_bus_imem_check (
 
 						if (bus_rmask[i] && ((bus_addr + i) | (`RISCV_FORMAL_FAULT_WIDTH - 1)) == ((imem_addr + j) | (`RISCV_FORMAL_FAULT_WIDTH - 1))) begin
 							assume (!rvfi_bus_fault[channel_idx]);
+						end
+					end
+					// When the halfword of interest is the first halfword of a 32-bit instruction, need to also assume
+					// the second halfword is successfully fetched (data unimportant). This may be a different bus
+					// access than the first halfword of the instruction.
+					if (&imem_data[1:0]) begin
+						for (i = 0; i < `RISCV_FORMAL_BUSLEN/8; i=i+1)
+						for (j = 2; j < 4; j=j+1) begin
+							if (bus_rmask[i] && ((bus_addr + i) | (`RISCV_FORMAL_FAULT_WIDTH - 1)) == ((imem_addr + j) | (`RISCV_FORMAL_FAULT_WIDTH - 1))) begin
+								assume (!rvfi_bus_fault[channel_idx]);
+							end
 						end
 					end
 				end
