@@ -10,5 +10,5 @@ cd hazard3
 
 cd test/formal/riscv-formal/riscv-formal/cores/hazard3
 ./generate.sh
-make -j$(nproc) -C checks
+make -j$(nproc)
 ```

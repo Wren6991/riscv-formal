@@ -2,10 +2,10 @@
 [*] GTKWave Analyzer v3.3.103 (w)1999-2019 BSI
 [*] Sat May 29 18:22:49 2021
 [*]
-[dumpfile] "/home/luke/proj/hazard3/test/formal/riscv-formal/cores/hazard3/checks/insn_add_ch0/engine_0/trace.vcd"
+[dumpfile] "trace.vcd"
 [dumpfile_mtime] "Sat May 29 17:59:12 2021"
 [dumpfile_size] 191431
-[savefile] "/home/luke/proj/hazard3/test/formal/riscv-formal/cores/hazard3/checks.gtkw"
+[savefile] "checks.gtkw"
 [timestart] 0
 [size] 2560 1403
 [pos] -1 -1

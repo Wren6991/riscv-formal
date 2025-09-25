@@ -1,5 +1,7 @@
 hdl/
 checks/
+checks_rv32ib/
+checks_rv32izbk/
 *.s
 *.o
 *.log

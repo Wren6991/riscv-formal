@@ -9,4 +9,6 @@ for incdir in $(listfiles -f flati $TB_ROOT/hazard3_rvfi.f); do
 	cp $incdir/*.vh hdl
 done
 
-python3 ../../checks/genchecks.py
+python3 ../../checks/genchecks.py checks
+python3 ../../checks/genchecks.py checks_rv32ib
+python3 ../../checks/genchecks.py checks_rv32izbk
