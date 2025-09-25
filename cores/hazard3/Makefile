@@ -1,12 +1,15 @@
 # Simple recursive Makefile to allow one `make` jobserver to be shared across
 # multiple checks directories
 
-.PHONY: all clean base 32ib 32izbk
+.PHONY: all clean base 1port 32ib 32izbk
 
 all: base 32ib 32izbk
 
 base:
 	$(MAKE) -C checks
+
+1port:
+	$(MAKE) -C checks_1port
 
 32ib:
 	$(MAKE) -C checks_rv32ib

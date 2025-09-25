@@ -1,5 +1,6 @@
 hdl/
 checks/
+checks_1port/
 checks_rv32ib/
 checks_rv32izbk/
 *.s
