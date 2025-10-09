@@ -3,7 +3,7 @@
 
 .PHONY: all clean base 1port 32ib 32izbk
 
-all: base 32ib 32izbk
+all: base 1port 32ib 32izbk
 
 base:
 	$(MAKE) -C checks
