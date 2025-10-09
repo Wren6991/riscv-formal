@@ -6,3 +6,4 @@ checks_rv32izbk/
 *.s
 *.o
 *.log
+trace.vcd
