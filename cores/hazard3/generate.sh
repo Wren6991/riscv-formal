@@ -18,6 +18,8 @@ for incdir in $(${LISTFILES} -f flati $TB_ROOT/hazard3_rvfi.f); do
 done
 
 python3 ../../checks/genchecks.py checks
+python3 ../../checks/genchecks.py checks_zcmp
+python3 ../../checks/genchecks.py checks_zilsd
 python3 ../../checks/genchecks.py checks_1port
 python3 ../../checks/genchecks.py checks_rv32ib
 python3 ../../checks/genchecks.py checks_rv32izbk

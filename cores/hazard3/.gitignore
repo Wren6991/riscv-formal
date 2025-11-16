@@ -3,6 +3,8 @@ checks/
 checks_1port/
 checks_rv32ib/
 checks_rv32izbk/
+checks_zcmp/
+checks_zilsd/
 *.s
 *.o
 *.log

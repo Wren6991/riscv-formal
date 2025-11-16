@@ -17,5 +17,11 @@ base:
 32izbk:
 	$(MAKE) -C checks_32izbk
 
+zcmp:
+	$(MAKE) -C checks_zcmp
+
+zilsd:
+	$(MAKE) -C checks_zilsd
+
 clean:
 	./generate.sh
