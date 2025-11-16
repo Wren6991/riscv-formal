@@ -3,12 +3,28 @@
 from Verilog_VCD.Verilog_VCD import parse_vcd
 from os import system
 from sys import argv
+import sys
+import os.path
 
 rvfi_valid = None
 rvfi_order = None
 rvfi_insn = None
 
-for netinfo in parse_vcd(f"checks/{argv[1]}_ch0/engine_0/trace.vcd").values():
+# Do what I mean
+try_paths = [
+    f"checks/{argv[1]}_ch0/engine_0/trace.vcd",
+    f"{argv[1]}_ch0/engine_0/trace.vcd",
+    f"{argv[1]}/engine_0/trace.vcd",
+]
+vcdpath = None
+for p in try_paths:
+    if os.path.exists(p):
+        vcdpath = p
+        break
+if vcdpath is None:
+    sys.exit(f"Couldn't find VCD for test name '{argv[1]}'")
+print(f"Disassembling '{vcdpath}'")
+for netinfo in parse_vcd(vcdpath).values():
     for net in netinfo['nets']:
         # print(net["hier"], net["name"])
         if net["hier"] == "rvfi_testbench.wrapper" and net["name"] == "rvfi_valid":

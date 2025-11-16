@@ -1,9 +1,14 @@
 #!/bin/bash
 set -ex
 
-VCDNAME=checks/${1}_ch0/engine_0/trace.vcd
-if [[ ! -f ${VCDNAME} ]]; then
-	echo "No such file: ${VCDNAME}"
+if [[ -f checks/${1}_ch0/engine_0/trace.vcd ]]; then
+	VCDNAME=checks/${1}_ch0/engine_0/trace.vcd
+elif [[ -f ${1}_ch0/engine_0/trace.vcd ]]; then
+	VCDNAME=${1}_ch0/engine_0/trace.vcd
+elif [[ -f ${1}/engine_0/trace.vcd ]]; then
+	VCDNAME=${1}/engine_0/trace.vcd
+else
+	echo "Couldn't find .vcd for test name: $1"
 	exit
 fi
 
