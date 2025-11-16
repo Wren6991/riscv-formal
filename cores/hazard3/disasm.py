@@ -57,6 +57,6 @@ with open("disasm.s", "w") as f:
             print(".insn 4, 0x" + word, file=f)
 
 
-system("riscv32-unknown-elf-gcc -march=rv32imab_zicsr_zifencei_zca_zcb_zcmp -c disasm.s")
+system("riscv32-unknown-elf-gcc -march=rv32imab_zicsr_zifencei_zca_zcb_zcmp -Wa,-march=rv32imab_zicsr_zifencei_zca_zcb_zcmp_zilsd_zclsd -c disasm.s")
 system("riscv32-unknown-elf-objdump -D -j .text -M numeric,no-aliases disasm.o")
 
