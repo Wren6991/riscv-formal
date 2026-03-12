@@ -15,7 +15,7 @@ base:
 	$(MAKE) -C checks_rv32ib
 
 32izbk:
-	$(MAKE) -C checks_32izbk
+	$(MAKE) -C checks_rv32izbk
 
 zcmp:
 	$(MAKE) -C checks_zcmp
